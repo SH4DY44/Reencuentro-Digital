@@ -1,26 +1,38 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* Importar fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap');
+
+/* Variables personalizadas para colores más suaves */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --bg-primary: #fafaf9;      /* Blanco cálido */
+  --bg-secondary: #f5f5f4;    /* Gris muy suave */
+  --bg-soft: #f9fafb;         /* Gris azulado muy suave */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--bg-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Merriweather', serif;
+}
+
+/* Componentes con colores más suaves */
+@layer components {
+  .bg-soft {
+    background-color: #f9fafb;
+  }
+  
+  .bg-warm {
+    background-color: #fafaf9;
+  }
+  
+  .bg-card {
+    background-color: #ffffff;
+    border: 1px solid #f3f4f6;
+  }
 }

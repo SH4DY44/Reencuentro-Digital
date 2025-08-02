@@ -2,37 +2,181 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Importar fuentes */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap');
-
-/* Variables personalizadas para colores más suaves */
+/* Variables CSS personalizadas */
 :root {
-  --bg-primary: #fafaf9;      /* Blanco cálido */
-  --bg-secondary: #f5f5f4;    /* Gris muy suave */
-  --bg-soft: #f9fafb;         /* Gris azulado muy suave */
+  --bg-primary: #fafaf9;
+  --bg-secondary: #f5f5f4;
+  --bg-soft: #f9fafb;
+  
+  /* Fuentes */
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-serif: var(--font-merriweather), serif;
+}
+
+/* Configuración base mejorada */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem; /* Compensar header sticky */
 }
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: var(--font-sans);
   background-color: var(--bg-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
+/* Tipografía mejorada */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Merriweather', serif;
+  font-family: var(--font-serif);
+  line-height: 1.3;
+  letter-spacing: -0.025em;
 }
 
-/* Componentes con colores más suaves */
+/* Componentes personalizados */
 @layer components {
+  /* Contenedores con colores suaves */
   .bg-soft {
-    background-color: #f9fafb;
+    background-color: var(--bg-soft);
   }
   
   .bg-warm {
-    background-color: #fafaf9;
+    background-color: var(--bg-primary);
   }
   
   .bg-card {
     background-color: #ffffff;
     border: 1px solid #f3f4f6;
+  }
+
+  /* Enlaces con mejores transiciones */
+  .link-primary {
+    @apply text-blue-600 hover:text-blue-700 transition-colors duration-200;
+  }
+
+  .link-secondary {
+    @apply text-gray-600 hover:text-gray-900 transition-colors duration-200;
+  }
+
+  /* Botones con efectos mejorados */
+  .btn-primary {
+    @apply bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 shadow-sm hover:shadow-lg transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+  }
+
+  /* Animaciones personalizadas */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+
+  /* Efectos de scroll reveal */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+  }
+
+  .scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Utilidades adicionales */
+@layer utilities {
+  /* Mejores sombras */
+  .shadow-soft {
+    box-shadow: 0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04);
+  }
+
+  .shadow-strong {
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1), 0 2px 9px -5px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Gradientes personalizados */
+  .gradient-blue {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  }
+
+  .gradient-orange {
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  }
+
+  /* Texto con gradiente */
+  .text-gradient {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* Animaciones keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mejoras de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus states mejorados */
+.focus-visible:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Estilos para código (si es necesario) */
+code {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  background-color: #f1f5f9;
+  padding: 0.2em 0.4em;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
   }
 }

@@ -1,136 +1,235 @@
-import Hero from '@/components/sections/Hero'
+// src/app/page.js
+import Link from 'next/link'
+import { Container, Section, Card, Button } from '@/components/ui'
+import { ExitButton } from '@/components/common/ExitButton'
+import { EMERGENCY_CONTACTS, SAFETY_MESSAGES } from '@/lib/constants'
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <main>
-      <Hero />
-      
-      {/* Sección de Fases - Fondo más suave */}
-      <section id="fases" className="py-20 bg-stone-50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-stone-900 mb-4">
-              Fases del Programa
-            </h2>
-            <p className="text-xl text-stone-600 max-w-2xl mx-auto">
-              Un proceso estructurado en tres etapas que acompaña la reintegración 
-              de manera gradual y respetuosa.
-            </p>
-          </div>
+    <>
+      {/* Botón de salida rápida flotante */}
+      <div className="fixed top-4 right-4 z-50">
+        <ExitButton size="sm" className="shadow-lg" />
+      </div>
 
-          <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            
-            {/* Fase 1 - Fondo crema muy suave */}
-            <div className="bg-white rounded-xl shadow-sm border border-stone-200 hover:shadow-lg hover:border-stone-300 transition-all duration-300 p-8 relative group">
-              <div className="absolute top-4 right-4 text-4xl font-bold text-blue-50 group-hover:text-blue-100 transition-colors">
-                01
-              </div>
-              <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-6">
-                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold mb-4 text-stone-900">
-                Acogida y Evaluación
-              </h3>
-              <p className="text-stone-600 leading-relaxed">
-                Acogida inmediata con equipo multidisciplinario, evaluación de necesidades 
-                tecnológicas y consentimiento informado, siempre respetando los tiempos 
-                de cada persona.
-              </p>
-            </div>
-
-            {/* Fase 2 */}
-            <div className="bg-white rounded-xl shadow-sm border border-stone-200 hover:shadow-lg hover:border-stone-300 transition-all duration-300 p-8 relative group">
-              <div className="absolute top-4 right-4 text-4xl font-bold text-orange-50 group-hover:text-orange-100 transition-colors">
-                02
-              </div>
-              <div className="w-12 h-12 bg-orange-50 rounded-lg flex items-center justify-center mb-6">
-                <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold mb-4 text-stone-900">
-                Fortalecimiento Psicosocial
-              </h3>
-              <p className="text-stone-600 leading-relaxed">
-                Acompañamiento psicológico especializado, talleres de comunicación familiar 
-                y alfabetización digital adaptada a las necesidades individuales.
-              </p>
-            </div>
-
-            {/* Fase 3 */}
-            <div className="bg-white rounded-xl shadow-sm border border-stone-200 hover:shadow-lg hover:border-stone-300 transition-all duration-300 p-8 relative group">
-              <div className="absolute top-4 right-4 text-4xl font-bold text-green-50 group-hover:text-green-100 transition-colors">
-                03
-              </div>
-              <div className="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center mb-6">
-                <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold mb-4 text-stone-900">
-                Integración Comunitaria
-              </h3>
-              <p className="text-stone-600 leading-relaxed">
-                Vínculos con la comunidad, capacitación en ciberseguridad, apoyo para 
-                reintegración laboral y seguimiento continuo personalizado.
-              </p>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* Sección Interdisciplinaria - Fondo crema cálido */}
-      <section className="py-20 bg-orange-50/30">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      {/* Hero Section - Mensaje de Seguridad */}
+      <Section background="default" padding="lg">
+        <Container>
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-stone-900 mb-6">
-              Enfoque Interdisciplinario
-            </h2>
-            <p className="text-xl text-stone-600 mb-12">
-              La complejidad de la reintegración requiere la convergencia de múltiples disciplinas 
-              trabajando en armonía hacia un objetivo común.
-            </p>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="text-center p-6 bg-white/70 backdrop-blur-sm rounded-lg shadow-sm border border-stone-200">
-                <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">💬</span>
-                </div>
-                <h3 className="font-semibold text-stone-900 mb-2">Comunicación</h3>
-                <p className="text-sm text-stone-600">Estrategias empáticas y efectivas</p>
-              </div>
-              
-              <div className="text-center p-6 bg-white/70 backdrop-blur-sm rounded-lg shadow-sm border border-stone-200">
-                <div className="w-16 h-16 bg-orange-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">🎨</span>
-                </div>
-                <h3 className="font-semibold text-stone-900 mb-2">Diseño</h3>
-                <p className="text-sm text-stone-600">Experiencias centradas en el usuario</p>
-              </div>
-              
-              <div className="text-center p-6 bg-white/70 backdrop-blur-sm rounded-lg shadow-sm border border-stone-200">
-                <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">💻</span>
-                </div>
-                <h3 className="font-semibold text-stone-900 mb-2">Tecnología</h3>
-                <p className="text-sm text-stone-600">Herramientas seguras y accesibles</p>
-              </div>
-              
-              <div className="text-center p-6 bg-white/70 backdrop-blur-sm rounded-lg shadow-sm border border-stone-200">
-                <div className="w-16 h-16 bg-purple-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">🤝</span>
-                </div>
-                <h3 className="font-semibold text-stone-900 mb-2">Psicosocial</h3>
-                <p className="text-sm text-stone-600">Acompañamiento especializado</p>
+            {/* Mensaje principal de seguridad */}
+            <div className="mb-8">
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                Estás Seguro/a Aquí
+              </h1>
+              <p className="text-xl md:text-2xl text-gray-700 mb-6 leading-relaxed">
+                Este es un espacio seguro y confidencial donde puedes encontrar apoyo, 
+                información y recursos sin juicios ni preguntas invasivas.
+              </p>
+              <div className="inline-flex items-center px-4 py-2 bg-green-50 border border-green-200 rounded-lg">
+                <svg className="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span className="text-green-800 font-medium">Tu privacidad está protegida</span>
               </div>
             </div>
+
+            {/* Opciones principales de ayuda */}
+            <div className="grid md:grid-cols-2 gap-6 mb-12">
+              
+              {/* Necesito ayuda YA */}
+              <Card className="p-8 border-2 border-red-200 bg-red-50 hover:shadow-lg transition-all">
+                <div className="text-6xl mb-4">🚨</div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                  Necesito Ayuda AHORA
+                </h2>
+                <p className="text-gray-700 mb-6 leading-relaxed">
+                  Si estás en una situación de crisis o necesitas apoyo inmediato, 
+                  tenemos recursos disponibles las 24 horas.
+                </p>
+                <Button asChild size="lg" className="w-full bg-red-600 hover:bg-red-700">
+                  <Link href="/ayuda-inmediata">
+                    Obtener Ayuda Inmediata
+                  </Link>
+                </Button>
+              </Card>
+
+              {/* Busco información */}
+              <Card className="p-8 border-2 border-blue-200 bg-blue-50 hover:shadow-lg transition-all">
+                <div className="text-6xl mb-4">📚</div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                  Busco Información
+                </h2>
+                <p className="text-gray-700 mb-6 leading-relaxed">
+                  Quiero aprender sobre mis derechos, opciones disponibles 
+                  y cómo navegar este proceso paso a paso.
+                </p>
+                <Button asChild variant="outline" size="lg" className="w-full border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">
+                  <Link href="/herramientas">
+                    Ver Guías y Recursos
+                  </Link>
+                </Button>
+              </Card>
+            </div>
+
+            {/* Aviso de seguridad de navegación */}
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-8">
+              <div className="flex items-start">
+                <svg className="w-6 h-6 text-amber-600 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <div className="text-left">
+                  <h3 className="font-semibold text-amber-800 mb-2">Para tu seguridad:</h3>
+                  <ul className="text-sm text-amber-700 space-y-1">
+                    <li>• Usa modo incógnito/privado en tu navegador</li>
+                    <li>• El botón "SALIR RÁPIDO" borra tu historial automáticamente</li>
+                    <li>• No almacenamos ninguna información personal</li>
+                    <li>• Si alguien más usa tu dispositivo, borra el historial después</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
           </div>
-        </div>
-      </section>
-    </main>
+        </Container>
+      </Section>
+
+      {/* Contactos de Emergencia */}
+      <Section background="gray" padding="default">
+        <Container>
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Líneas de Ayuda Disponibles
+              </h2>
+              <p className="text-lg text-gray-600">
+                Profesionales capacitados están disponibles para ayudarte
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
+              {EMERGENCY_CONTACTS.map((contact, index) => (
+                <Card key={index} className="p-6 text-center hover:shadow-lg transition-shadow">
+                  <div className="text-3xl mb-3">
+                    {contact.type === 'emergency' && '🚨'}
+                    {contact.type === 'psychological' && '💚'}
+                    {contact.type === 'legal' && '⚖️'}
+                  </div>
+                  <h3 className="font-semibold text-gray-900 mb-2">{contact.name}</h3>
+                  <div className="text-2xl font-bold text-blue-600 mb-2">
+                    <a href={`tel:${contact.phone}`} className="hover:text-blue-700">
+                      {contact.phone}
+                    </a>
+                  </div>
+                  <p className="text-sm text-gray-600">{contact.available}</p>
+                  <Button asChild size="sm" className="mt-3 w-full">
+                    <a href={`tel:${contact.phone}`}>
+                      Llamar Ahora
+                    </a>
+                  </Button>
+                </Card>
+              ))}
+            </div>
+
+            <div className="text-center">
+              <p className="text-sm text-gray-600 mb-4">
+                ¿No puedes hablar por teléfono? También tenemos chat seguro disponible.
+              </p>
+              <Button asChild variant="outline">
+                <Link href="/apoyo-emocional">
+                  Acceder al Chat de Apoyo
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Mensajes de Seguridad y Confianza */}
+      <Section background="blue" padding="default">
+        <Container>
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Tu Seguridad Es Nuestra Prioridad
+              </h2>
+              <p className="text-lg text-gray-600">
+                Entendemos que la confianza se gana, no se exige
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {SAFETY_MESSAGES.map((message, index) => (
+                <Card key={index} className="p-6 text-center bg-white/70 backdrop-blur-sm border-blue-200">
+                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    {index === 0 && <span className="text-2xl">🔒</span>}
+                    {index === 1 && <span className="text-2xl">🚪</span>}
+                    {index === 2 && <span className="text-2xl">✅</span>}
+                    {index === 3 && <span className="text-2xl">💙</span>}
+                  </div>
+                  <h3 className="font-semibold text-gray-900 mb-2">{message.title}</h3>
+                  <p className="text-sm text-gray-600">{message.description}</p>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Navegación a Recursos Específicos */}
+      <Section background="default" padding="default">
+        <Container>
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8">
+              ¿Qué Tipo de Apoyo Necesitas?
+            </h2>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              
+              <Card className="p-6 hover:shadow-lg transition-shadow">
+                <div className="text-4xl mb-4">💜</div>
+                <h3 className="font-semibold text-gray-900 mb-2">Apoyo Emocional</h3>
+                <p className="text-sm text-gray-600 mb-4">
+                  Espacios seguros para expresar lo que sientes
+                </p>
+                <Button asChild variant="outline" size="sm" className="w-full">
+                  <Link href="/apoyo-emocional">Acceder</Link>
+                </Button>
+              </Card>
+
+              <Card className="p-6 hover:shadow-lg transition-shadow">
+                <div className="text-4xl mb-4">👨‍👩‍👧‍👦</div>
+                <h3 className="font-semibold text-gray-900 mb-2">Para Familias</h3>
+                <p className="text-sm text-gray-600 mb-4">
+                  Guías para familiares que quieren ayudar
+                </p>
+                <Button asChild variant="outline" size="sm" className="w-full">
+                  <Link href="/familias">Acceder</Link>
+                </Button>
+              </Card>
+
+              <Card className="p-6 hover:shadow-lg transition-shadow md:col-span-2 lg:col-span-1">
+                <div className="text-4xl mb-4">🔒</div>
+                <h3 className="font-semibold text-gray-900 mb-2">Seguridad Digital</h3>
+                <p className="text-sm text-gray-600 mb-4">
+                  Cómo protegerte en línea y comunicarte de forma segura
+                </p>
+                <Button asChild variant="outline" size="sm" className="w-full">
+                  <Link href="/seguridad">Acceder</Link>
+                </Button>
+              </Card>
+            </div>
+
+            <div className="mt-10 p-6 bg-gray-50 rounded-lg">
+              <p className="text-gray-700 leading-relaxed">
+                <strong>Recuerda:</strong> No tienes que hacer esto solo/a. Hay personas y organizaciones 
+                que entienden por lo que has pasado y están aquí para apoyarte en cada paso del camino. 
+                Toma tu tiempo, ve a tu ritmo, y usa solo los recursos que te hagan sentir cómodo/a.
+              </p>
+            </div>
+          </div>
+        </Container>
+      </Section>
+    </>
   )
 }

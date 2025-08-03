@@ -12,9 +12,7 @@ export function Footer() {
             
             {/* Información Principal */}
             <div className="lg:col-span-2">
-              <div className="mb-6">
-                <Logo variant="footer" />
-              </div>
+        
               
               <p className="text-gray-400 max-w-md leading-relaxed mb-6">
                 {SITE_CONFIG.description}
@@ -23,7 +21,7 @@ export function Footer() {
               <div className="text-sm text-gray-500">
                 <p className="font-medium text-gray-400 mb-2">Proyecto Académico</p>
                 <p>{SITE_CONFIG.author}</p>
-                <p>Seminario de Titulación {SITE_CONFIG.year}</p>
+                <p>SCDI {SITE_CONFIG.year}</p>
               </div>
             </div>
 

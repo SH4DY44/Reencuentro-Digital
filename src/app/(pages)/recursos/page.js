@@ -1,5 +1,5 @@
 import { Container, Section, Card, Button } from '@/components/ui'
-import { WidgetEmergencia, BibliotecaRecursos, DirectorioContactos } from '@/components/common'
+import { WidgetEmergencia, RecursosDescargables, DirectorioContactos } from '@/components/common'
 import { generatePageMetadata } from '@/lib/metadata'
 import Link from 'next/link'
 
@@ -47,7 +47,7 @@ export default function RecursosPage() {
             </div>
 
             {/* Biblioteca completa de recursos */}
-            <BibliotecaRecursos />
+            <RecursosDescargables />
           </div>
         </Container>
       </Section>
@@ -91,7 +91,7 @@ export default function RecursosPage() {
               </p>
             </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               <Card className="p-6 text-center hover:shadow-lg transition-shadow">
                 <div className="text-4xl mb-4">💜</div>
                 <h3 className="font-semibold mb-2">Apoyo Emocional</h3>
@@ -122,17 +122,6 @@ export default function RecursosPage() {
                 </p>
                 <Button asChild variant="outline" size="sm" className="w-full">
                   <Link href="/familias">Explorar</Link>
-                </Button>
-              </Card>
-              
-              <Card className="p-6 text-center hover:shadow-lg transition-shadow">
-                <div className="text-4xl mb-4">🔒</div>
-                <h3 className="font-semibold mb-2">Seguridad Digital</h3>
-                <p className="text-sm text-gray-600 mb-4">
-                  Protección online y navegación segura
-                </p>
-                <Button asChild variant="outline" size="sm" className="w-full">
-                  <Link href="/seguridad">Explorar</Link>
                 </Button>
               </Card>
             </div>

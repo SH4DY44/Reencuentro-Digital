@@ -281,7 +281,7 @@ export default function HomePage() {
             <div className="bg-gray-50 rounded-lg p-6">
               <p className="text-gray-700 text-sm">
                 <strong>Recordatorio:</strong> Si alguien más usa tu dispositivo, 
-                recuerda usar el botón "Salir Rápido" antes de alejarte. 
+                recuerda usar el botón &quot;Salir Rápido&quot; antes de alejarte. 
                 Tu seguridad es lo más importante.
               </p>
             </div>

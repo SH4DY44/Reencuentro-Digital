@@ -102,29 +102,7 @@ export function cn(...classes) {
     }
   }
   
-  /**
-   * Hook personalizado para detectar si elemento está en viewport
-   * @param {React.RefObject} ref 
-   * @returns {boolean}
-   */
-  export function useInView(ref) {
-    if (typeof window === 'undefined') return false
-    
-    const [isInView, setIsInView] = React.useState(false)
-    
-    React.useEffect(() => {
-      const observer = new IntersectionObserver(
-        ([entry]) => setIsInView(entry.isIntersecting),
-        { threshold: 0.1 }
-      )
-      
-      if (ref.current) observer.observe(ref.current)
-      
-      return () => observer.disconnect()
-    }, [ref])
-    
-    return isInView
-  }
+
   
   /**
    * Genera ID único para componentes

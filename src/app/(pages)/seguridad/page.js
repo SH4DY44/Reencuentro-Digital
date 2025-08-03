@@ -73,7 +73,7 @@ export default function SeguridadPage() {
                   <li className="flex items-start">
                     <span className="text-green-500 mr-2 mt-1">✓</span>
                     <div>
-                      <strong>Botón "Salir Rápido":</strong> Hace todo automáticamente
+                      <strong>Botón &quot;Salir Rápido&quot;:</strong> Hace todo automáticamente
                     </div>
                   </li>
                 </ul>

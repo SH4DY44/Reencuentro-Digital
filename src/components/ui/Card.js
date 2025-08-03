@@ -1,37 +1,27 @@
+import { forwardRef } from 'react'
 import { cn } from '@/lib/utils'
 
-export function Card({ 
-  children, 
-  className, 
-  variant = 'default',
-  padding = 'default',
-  ...props 
-}) {
-  const variantClasses = {
+const Card = forwardRef(({ className, variant = 'default', ...props }, ref) => {
+  const variants = {
     default: 'bg-white border border-gray-200 shadow-sm',
-    elevated: 'bg-white shadow-md',
-    glass: 'bg-white/70 backdrop-blur-sm border border-gray-200',
-    dark: 'bg-gray-800 border border-gray-700 text-white'
+    elevated: 'bg-white border border-gray-200 shadow-lg',
+    outlined: 'bg-white border-2 border-gray-300',
+    ghost: 'bg-gray-50 border border-gray-100'
   }
-  
-  const paddingClasses = {
-    none: '',
-    sm: 'p-4',
-    default: 'p-6',
-    lg: 'p-8'
-  }
-  
+
   return (
     <div
+      ref={ref}
       className={cn(
-        'rounded-lg',
-        variantClasses[variant],
-        paddingClasses[padding],
+        'rounded-lg transition-all duration-300',
+        variants[variant],
         className
       )}
       {...props}
-    >
-      {children}
-    </div>
+    />
   )
-}
+})
+
+Card.displayName = 'Card'
+
+export { Card }

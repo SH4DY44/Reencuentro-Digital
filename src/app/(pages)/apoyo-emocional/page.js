@@ -1,4 +1,3 @@
-// src/app/(pages)/ayuda-inmediata/page.js
 import { Container, Section, Card, Button } from '@/components/ui'
 import { EmergencyContactsList, QuickEmergencyContact } from '@/components/common'
 import { generatePageMetadata } from '@/lib/metadata'

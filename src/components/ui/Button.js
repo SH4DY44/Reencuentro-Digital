@@ -1,64 +1,50 @@
-import React from 'react'
+import { forwardRef } from 'react'
 import { cn } from '@/lib/utils'
 
-// src/components/ui/Button.js
-export function Button({ 
-    children, 
-    variant = 'primary', 
-    size = 'default',
-    className,
-    disabled = false,
-    loading = false,
-    asChild = false,
-    ...props 
-  }) {
-    const baseClasses = 'font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed'
-    
-    const variantClasses = {
-      primary: 'bg-blue-600 hover:bg-blue-700 text-white shadow-sm hover:shadow-lg transform hover:-translate-y-0.5 focus:ring-blue-500',
-      secondary: 'border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white focus:ring-blue-500',
-      outline: 'border border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-gray-500',
-      ghost: 'text-gray-700 hover:bg-gray-100 focus:ring-gray-500',
-      urgent: 'bg-red-600 hover:bg-red-700 text-white shadow-sm hover:shadow-lg focus:ring-red-500',
-      safe: 'bg-green-600 hover:bg-green-700 text-white shadow-sm hover:shadow-lg focus:ring-green-500'
-    }
-    
-    const sizeClasses = {
-      sm: 'px-4 py-2 text-sm rounded-md',
-      default: 'px-6 py-3 rounded-lg',
-      lg: 'px-8 py-4 text-lg rounded-lg'
-    }
+const Button = forwardRef(({ 
+  className, 
+  variant = 'default', 
+  size = 'default', 
+  asChild = false, 
+  ...props 
+}, ref) => {
+  const Comp = asChild ? 'span' : 'button'
 
-    const classes = cn(
-      baseClasses,
-      variantClasses[variant],
-      sizeClasses[size],
-      loading && 'cursor-wait',
-      className
-    )
-
-    // Si asChild es true, aplicar las clases a los children
-    if (asChild) {
-      return React.cloneElement(children, {
-        className: cn(classes, children.props.className),
-        ...props
-      })
-    }
-    
-    return (
-      <button
-        className={classes}
-        disabled={disabled || loading}
-        {...props}
-      >
-        {loading ? (
-          <div className="flex items-center space-x-2">
-            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-current"></div>
-            <span>Cargando...</span>
-          </div>
-        ) : (
-          children
-        )}
-      </button>
-    )
+  const variants = {
+    default: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500',
+    primary: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500',
+    secondary: 'border-2 border-blue-600 text-blue-600 bg-white hover:bg-blue-600 hover:text-white focus:ring-blue-500',
+    urgent: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 animate-pulse',
+    success: 'bg-green-600 text-white hover:bg-green-700 focus:ring-green-500',
+    warning: 'bg-yellow-500 text-white hover:bg-yellow-600 focus:ring-yellow-500',
+    outline: 'border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:ring-gray-500',
+    ghost: 'bg-transparent text-gray-700 hover:bg-gray-100 focus:ring-gray-500',
+    link: 'bg-transparent text-blue-600 underline-offset-4 hover:underline focus:ring-0 p-0 h-auto'
   }
+
+  const sizes = {
+    sm: 'h-9 px-3 text-sm rounded-md',
+    default: 'h-10 px-4 py-2 rounded-lg',
+    lg: 'h-12 px-8 text-lg rounded-lg',
+    xl: 'h-14 px-10 text-xl rounded-xl'
+  }
+
+  const baseClasses = 'inline-flex items-center justify-center font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none transform hover:-translate-y-0.5 hover:shadow-lg'
+
+  return (
+    <Comp
+      className={cn(
+        baseClasses,
+        variants[variant],
+        sizes[size],
+        className
+      )}
+      ref={ref}
+      {...props}
+    />
+  )
+})
+
+Button.displayName = 'Button'
+
+export { Button }

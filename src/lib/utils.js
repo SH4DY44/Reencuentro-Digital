@@ -1,4 +1,3 @@
-// src/lib/utils.js
 
 /**
  * Combina clases CSS de forma inteligente

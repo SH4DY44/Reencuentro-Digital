@@ -1,3 +1,4 @@
+import React from 'react'
 import { cn } from '@/lib/utils'
 
 // src/components/ui/Button.js
@@ -8,6 +9,7 @@ export function Button({
     className,
     disabled = false,
     loading = false,
+    asChild = false,
     ...props 
   }) {
     const baseClasses = 'font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed'
@@ -26,16 +28,26 @@ export function Button({
       default: 'px-6 py-3 rounded-lg',
       lg: 'px-8 py-4 text-lg rounded-lg'
     }
+
+    const classes = cn(
+      baseClasses,
+      variantClasses[variant],
+      sizeClasses[size],
+      loading && 'cursor-wait',
+      className
+    )
+
+    // Si asChild es true, aplicar las clases a los children
+    if (asChild) {
+      return React.cloneElement(children, {
+        className: cn(classes, children.props.className),
+        ...props
+      })
+    }
     
     return (
       <button
-        className={cn(
-          baseClasses,
-          variantClasses[variant],
-          sizeClasses[size],
-          loading && 'cursor-wait',
-          className
-        )}
+        className={classes}
         disabled={disabled || loading}
         {...props}
       >

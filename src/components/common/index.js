@@ -6,3 +6,4 @@ export { EmergencyContactCard, EmergencyContactsList, QuickEmergencyContact } fr
 export { DirectorioContactos, ContactoEmergenciaCard, WidgetEmergencia } from './SistemaContactos'
 export { ChatApoyo } from './ChatApoyo'
 export { RecursosDescargables } from './RecursosDescargables'
+export { PageTransition, LoadingTransition, FadeInUp, StaggerContainer, FadeIn, HoverScale } from './PageTransition'

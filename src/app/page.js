@@ -1,7 +1,7 @@
 // src/app/page.js
 import Link from 'next/link'
 import { Container, Section, Card, Button } from '@/components/ui'
-import { ExitButton } from '@/components/common/ExitButton'
+import { ExitButton, FadeInUp, StaggerContainer, HoverScale } from '@/components/common'
 import { EMERGENCY_CONTACTS, SAFETY_MESSAGES } from '@/lib/constants'
 
 export default function HomePage() {
@@ -18,59 +18,71 @@ export default function HomePage() {
           <div className="max-w-4xl mx-auto text-center">
             
             {/* Mensaje principal de seguridad */}
-            <div className="mb-8">
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                Estás Seguro/a Aquí
-              </h1>
-              <p className="text-xl md:text-2xl text-gray-700 mb-6 leading-relaxed">
-                Este es un espacio seguro y confidencial donde puedes encontrar apoyo, 
-                información y recursos sin juicios ni preguntas invasivas.
-              </p>
-              <div className="inline-flex items-center px-4 py-2 bg-green-50 border border-green-200 rounded-lg">
-                <svg className="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span className="text-green-800 font-medium">Tu privacidad está protegida</span>
+            <FadeInUp delay={0.2}>
+              <div className="mb-8">
+                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                  Estás Seguro/a Aquí
+                </h1>
+                <p className="text-xl md:text-2xl text-gray-700 mb-6 leading-relaxed">
+                  Este es un espacio seguro y confidencial donde puedes encontrar apoyo, 
+                  información y recursos sin juicios ni preguntas invasivas.
+                </p>
+                <div className="inline-flex items-center px-4 py-2 bg-green-50 border border-green-200 rounded-lg">
+                  <svg className="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span className="text-green-800 font-medium">Tu privacidad está protegida</span>
+                </div>
               </div>
-            </div>
+            </FadeInUp>
 
             {/* Opciones principales de ayuda */}
-            <div className="grid md:grid-cols-2 gap-6 mb-12">
-              
-              {/* Necesito ayuda YA */}
-              <Card className="p-8 border-2 border-red-200 bg-red-50 hover:shadow-lg transition-all">
-                <div className="text-6xl mb-4">🚨</div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                  Necesito Ayuda AHORA
-                </h2>
-                <p className="text-gray-700 mb-6 leading-relaxed">
-                  Si estás en una situación de crisis o necesitas apoyo inmediato, 
-                  tenemos recursos disponibles las 24 horas.
-                </p>
-                <Button asChild size="lg" className="w-full bg-red-600 hover:bg-red-700">
-                  <Link href="/ayuda-inmediata">
-                    Obtener Ayuda Inmediata
-                  </Link>
-                </Button>
-              </Card>
+            <StaggerContainer staggerDelay={0.2}>
+              <div className="grid md:grid-cols-2 gap-6 mb-12">
+                
+                {/* Necesito ayuda YA */}
+                <FadeInUp delay={0.4}>
+                  <HoverScale>
+                    <Card className="p-8 border-2 border-red-200 bg-red-50 hover:shadow-lg transition-all">
+                      <div className="text-6xl mb-4">🚨</div>
+                      <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                        Necesito Ayuda AHORA
+                      </h2>
+                      <p className="text-gray-700 mb-6 leading-relaxed">
+                        Si estás en una situación de crisis o necesitas apoyo inmediato, 
+                        tenemos recursos disponibles las 24 horas.
+                      </p>
+                      <Button asChild size="lg" className="w-full bg-red-600 hover:bg-red-700">
+                        <Link href="/ayuda-inmediata">
+                          Obtener Ayuda Inmediata
+                        </Link>
+                      </Button>
+                    </Card>
+                  </HoverScale>
+                </FadeInUp>
 
-              {/* Busco información */}
-              <Card className="p-8 border-2 border-blue-200 bg-blue-50 hover:shadow-lg transition-all">
-                <div className="text-6xl mb-4">📚</div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                  Busco Información
-                </h2>
-                <p className="text-gray-700 mb-6 leading-relaxed">
-                  Quiero aprender sobre mis derechos, opciones disponibles 
-                  y cómo navegar este proceso paso a paso.
-                </p>
-                <Button asChild variant="outline" size="lg" className="w-full border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">
-                  <Link href="/herramientas">
-                    Ver Guías y Recursos
-                  </Link>
-                </Button>
-              </Card>
-            </div>
+                {/* Busco información */}
+                <FadeInUp delay={0.6}>
+                  <HoverScale>
+                    <Card className="p-8 border-2 border-blue-200 bg-blue-50 hover:shadow-lg transition-all">
+                      <div className="text-6xl mb-4">📚</div>
+                      <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                        Busco Información
+                      </h2>
+                      <p className="text-gray-700 mb-6 leading-relaxed">
+                        Quiero aprender sobre mis derechos, opciones disponibles 
+                        y cómo navegar este proceso paso a paso.
+                      </p>
+                      <Button asChild variant="outline" size="lg" className="w-full border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">
+                        <Link href="/herramientas">
+                          Ver Guías y Recursos
+                        </Link>
+                      </Button>
+                    </Card>
+                  </HoverScale>
+                </FadeInUp>
+              </div>
+            </StaggerContainer>
 
             {/* Aviso de seguridad de navegación */}
             <div className="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-8">

@@ -4,6 +4,7 @@ import { Inter, Merriweather } from 'next/font/google'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { BackToTop } from '@/components/common/BackToTop'
+import { PageTransition } from '@/components/common/PageTransition'
 import { SITE_CONFIG } from '@/lib/constants'
 
 // Configuración optimizada de fuentes
@@ -85,7 +86,9 @@ export default function RootLayout({ children }) {
         
         {/* Main Content */}
         <main className="flex-1">
-          {children}
+          <PageTransition>
+            {children}
+          </PageTransition>
         </main>
         
         {/* Footer */}
